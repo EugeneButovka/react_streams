@@ -16,24 +16,17 @@ class StreamCreate extends React.Component {
     };
 
     renderInput = (formProps) => {
+        //make input field red if error
         const className = `field ${formProps.meta.error && formProps.meta.touched ? 'error':''}`;
 
         return (
             <div className={className}>
                 <label>{formProps.label}</label>
+                {/*inherit all props by input, including onClick etc*/}
                 <input {...formProps.input} autoComplete={"off"}/>
-                {/*<div>{formProps.meta.error}</div>*/}
                 {this.renderError(formProps.meta)}
             </div>
         );
-
-
-        //return <input {...formProps.input}/> //short form + passing other properties
-        /*return <input
-            type="text"
-            onChange={formProps.input.onChange}
-            value={formProps.input.value}
-        />*/
     };
 
     onSubmit = (formValues) => {
@@ -63,13 +56,8 @@ const validate = (formValues) => {
     }
 
     return errors;
-}
+};
 
-/*
-export default connect()(reduxForm({
-    form: 'streamCreate',
-    validate: validate
-})(StreamCreate));*/
 
 const formWrapped = reduxForm({
     form: 'streamCreate',
